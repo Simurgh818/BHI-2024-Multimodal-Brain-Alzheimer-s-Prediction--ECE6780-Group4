@@ -1,0 +1,63 @@
+\documentclass[journal,twoside,web]{ieeecolor}
+\usepackage{generic}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{algorithm,algorithmic}
+\usepackage{hyperref}
+\hypersetup{hidelinks=True}
+\usepackage{textcomp}
+\usepackage{subcaption}
+%Added by Cheng
+% \usepackage{multirow,array,enumitem,adjustbox}
+\usepackage{booktabs,threeparttable,makecell}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\markboth{\hskip25pc IEEE TRANSACTIONS AND JOURNALS TEMPLATE}
+{Author \MakeLowercase{\textit{et al.}}: Title}
+\begin{document}
+\title{Enhancing Alzheimer's Disease Diagnosis and Progression Prediction Through Multimodal Integration}
+\author{ Sina Dabiri, Cheng Wan, Hector Torres, Yishan Zhong, Micky C. Nnamdi, and May D. Wang}
+% \thanks{Cheng Wan is with the Department of Electrical and Computer Engineering, Georgia Institute of Technology, Atlanta, GA 30332 USA (e-mail: cwan38@gatech.edu). }
+% \thanks{Sina Dabiri is with the Wallace H. Coulter Department of Biomedical Engineering, Georgia Institute of Technology, Atlanta, GA 30332 USA. (e-mail: sdabiri3@gatech.edu).}
+% \thanks{Hector Torres is with 
+% the Wallace H Coulter Department of Biomedical Engineering, Georgia Institute of Technology, Atlanta, GA 
+% 30332 USA (e-mail: htorres31@gatech.edu).}}
+
+\maketitle
+
+\begin{abstract}
+Alzheimer’s Disease (AD) classification methodologies increasingly use machine learning and deep learning. This study aims to: 1) classify AD status into 3 classes, 2) predict AD progression across 7 time-points, and 3) assess multimodal data integration's impact. Our approach combines CNNs and Vision Transformers (ViT) for feature extraction from MRI, PET, EHR, and Genetic data, followed by feature fusion and classification. The hybrid ViT-CNN achieves 77\% validation and 70\% testing accuracy, outperforming individual models. Results indicate that PCA offers no benefit for AD progression classification, and SVM with 50 components performs best. Modality combination increases accuracy but decreases test sensitivity. Conclusion: The hybrid ViT-CNN model shows promise for AD classification, extracting rich features from multimodal data. However, modality combination impacts sensitivity differently for CNN and ViT models.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Convolutional Neural Network, Vision Transformers, ADNI, Alzheimer's Disease, Support Vector Machine, Principal Component Analysis\\
+\end{IEEEkeywords}
+
+\input{1-introduction}
+\vspace{-3mm}
+
+% \input{2-relatedwork}
+% \vspace{-3mm}
+
+\input{3-methodology}
+\vspace{-3mm}
+
+\input{4-results}
+\vspace{-3mm}
+
+\input{5-discussion}
+\vspace{-3mm}
+
+\input{6-conclusion}
+\vspace{-3mm}
+
+\section{References}
+\bibliographystyle{ieeetr}
+\bibliography{Bibliography}
+
+\end{document}
+
+

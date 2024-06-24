@@ -1,0 +1,43 @@
+\section{Discussion}
+\label{sec:discussion}
+\subsection{AD Classification}
+A key innovation of our approach is to exploit complementary information from CNN and ViT. CNN is good at capturing local features, while ViT is good at modeling global dependencies. By combining these two types of features, our model can represent brain imaging data more comprehensively, thereby improving the performance of AD classification. Furthermore, by leveraging pre-trained ViT models, our approach can effectively leverage universal visual representations learned on large-scale datasets. 
+
+We found that the hybrid ViT-CNN model showed better consistency, and its validation results were closer to the test results (validation accuracy 77\%, test accuracy 70\%). In contrast, the performance of the CNN encoder model on the validation set and test set differs greatly. This shows that the hybrid ViT-CNN model has stable generalization ability. 
+
+It is worth noting that the ViT model alone has the lowest performance. We believe this may be because the pre-trained ViT model is trained on a large-scale natural image dataset, and medical imaging data is significantly different from natural images. 
+
+By incorporating a pretrained ViT alongside the CNN encoder, the hybrid model achieves a remarkable increase in sensitivity from approximately 52\% to around 80\%, while maintaining consistent hyperparameters. This superior performance can be attributed to the pretrained ViT's ability to facilitate effective multi-modality integration and the concatenation of diverse features extracted from both the CNN and ViT. The promising results suggest that the hybrid ViT-CNN model has the potential to become a state-of-the-art approach for AD classification. Visualization techniques such as t-SNE and Grad-Cam will further elucidate the important regions learned by the model, contributing to the development of more accurate and reliable AD diagnosis techniques. 
+
+\subsection{AD Progression}
+The hyperparameter optimization results suggest that dimensionality reduction using PCA does not help the classification performance. The SVM with 50 components outperforms 1 and 10 components. In addition, although for 3 out of 7 timepoints ViT had higher Test Sensitivity scores than CNN, for timepoints 3-5 they were similar and for timepoint 6 CNN had higher Test Sensitivity scores. Overall, the test sensitivity scores were lower than expected. This could be since these models were pretrained on non-medical images. It is essential to do transfer learning and train them on medical images before doing feature extraction. 
+
+\subsection{Modality Contributions} 
+
+\textbf{AD Classification: }
+
+In the single modality setting, PET demonstrated superior performance compared to MRI. The accuracy of PET reached 59\%, surpassing that of MRI at 55\%. Moreover, PET exhibited higher F1 score and sensitivity, further highlighting its diagnostic value in AD classification. These findings underscore the importance of PET imaging in capturing AD-related pathological changes. However, in spirit of transparency the MRI images in the dataset we used were masks and not true MRI images. We are re-running our analysis with a hybrid dataset that combines good MRI images with PET images and will report our updated results in future.  
+
+Moving on to multimodal modeling, the combination of MRI and PET improved significantly. The accuracy of the MRI and PET combined model reached 63\%, outperforming the individual modalities. The F1 score and sensitivity also witnessed similar enhancements. This suggests that the complementary information provided by MRI and PET contributes to a more comprehensive representation of AD characteristics, leading to improved classification performance. 
+
+Furthermore, by comparing the results across different hyperparameter settings, we observed that multimodal models exhibited greater stability. Even with the inclusion of EHR and genomic data, the performance remained comparable to the MRI and PET combination, indicating the robustness of multimodal models to data variations and noise. 
+
+Regarding the limited improvement brought by the addition of EHR and genomic data, the analysis points to the limitation on the number of feature types  as a potential factor. Acquiring large-scale EHR and genomic data poses greater challenges compared to imaging data. Therefore, future work should focus on collecting more comprehensive EHR and genomic samples to fully harness their potential in AD classification. 
+
+In conclusion, the modality analysis conducted through testing results corroborates our previous observations. PET excels in single modality performance, while multimodal modeling significantly enhances the accuracy and stability of AD classification. Although the contribution of EHR and genomic data is limited in the current study, it highlights the importance of gathering more extensive and high-quality multimodal data. By integrating imaging, clinical, and genomic information, we can strive towards building more precise and robust models for AD diagnosis. 
+
+As shown in Figure 6, we also investigated the contribution of different modalities to Alzheimer's Disease (AD) classification, we conducted feature permutation experiments in the multimodal ViT-CNN model. Our analysis showed that features of PET in the CNN component had the highest importance, corroborating earlier findings that PET is effective in AD diagnosis. MRI and PET features within the CNN and ViT components also made substantial contributions, particularly when combined, highlighting the model's ability to utilize complementary information from both modalities to enhance classification performance. 
+
+In contrast, EHR features contributed the least, likely due to the limited sample size in our dataset, which may not fully represent the potential of EHR in AD diagnosis. This emphasizes the need for larger EHR datasets to better explore its utility. 
+
+The bar graph illustrating modality contributions clearly shows PET as the most significant contributor, followed by combined PET \& MRI features. The findings validate our hypothesis that multimodal approaches improve classification performance and stability. 
+
+Future research should aim to expand EHR data collection and explore methods to better integrate it with imaging modalities to enhance the performance of multimodal models. Overall, these insights confirm the importance of multimodal modeling in AD diagnosis and underscore the need for comprehensive datasets that include imaging, clinical, and genomic information. 
+
+\textbf{AD Progression: }
+
+The contribution of modalities and their performance metrics of accuracy, F1 score, and Test Sensitivity oscillated across timepoints and the range of values for CNN vs. ViT were similar. For example, for accuracy combining MRI and PET did not change the timepoints range much:  45-58\% for CNN and 44-59\% for ViT. Furthermore, for EHR and Genetic they had a large range of 37-63\% for both CNN and ViT and combining them with MRI and PET did increase the upper range of CNN to 62\%. One reason that EHR and Genetic’s did not have a big effect could be that they were 3 features, while for MRI and PET combination we had 2000 features. Therefore, for accuracy CNN and ViT were similar.  
+
+The F1 scores had a larger range for the timepoints. MRI had a higher upper range with ViT at 70\%, while for CNN it was at 59\%. On the other hand, PET had a higher upper range with CNN at 68\%, while for ViT it was at 65\%. Combining PET and MRI, CNN had a higher upper range at 65\%, while for ViT it was at 60\%. The EHR and Genetic performed the worst for timepoint 3-6 with 0\% for both CNN and ViT models.  Combining all modalities, CNN had a higher upper range at 65\%, while it was at 60\% for ViT. Therefore, for F1 scores CNN had higher upper range values than ViT. 
+
+The Test Sensitivity scores had a large range similar to F1 scores with ViT having a higher upper range than CNN. For example, for MRI ViT had an upper range at 93\% vs. 79\% for CNN, and PET had an upper range of 85\% vs. 68\% for CNN. Combining MRI and PET also had a higher upper range for ViT at 80\%, while it was at 76\% for CNN. The EHR and Genetic performed worse for timepoint 3-6 with 0\%, but 72\% for timepoint 7. Combining all of modalities ViT had higher upper range at 81 vs. 74\% for CNN. Therefore, for Test Sensitivity ViT outperforms CNN.

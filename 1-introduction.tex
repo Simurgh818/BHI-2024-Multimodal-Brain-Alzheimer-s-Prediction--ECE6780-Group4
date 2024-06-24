@@ -1,0 +1,57 @@
+\section{Introduction}
+\label{sec:introduction}
+\IEEEPARstart{T}{here} are 55 million people worldwide living with dementia, with 10 million new cases every year \cite{who_dementia_nodate}. Alzheimer's Disease (AD) is the most common type of dementia, accounting for 60-70\% of cases. With the growing number of cases, there is a growing interest in using AI models to classify AD cases and predict the progression of AD longitudinally with varying levels of success. Different types of AI have been analyzed in various ways to determine if there is a superior methodology for multimodal AD classification.
+
+AI models have shown promise in the early detection of AD, particularly in distinguishing between Mild Cognitive Impairment (MCI) and Normal Control (NC), as well as between MCI and AD. Machine learning and deep learning approaches, such as support vector machines (SVM) and convolutional neural networks (CNN), have been employed with notable success. Combining multiple modalities, such as Magnetic Resonance Imaging (MRI) and Positron Emission Tomography (PET), has been shown to enhance classification accuracy compared to using a single modality.
+
+The first goal of this proposal is to investigate the use of multimodal integration methods (i.e., feature-level fusion) for the classification of AD vs. MCI and MCI vs. NC. By harnessing the power of AI models and leveraging multimodal datasets, we aim to enhance diagnostic accuracy, prognostic capability, and ultimately, patient care outcomes. The third aim of this project is to assess how combining MRI, PET, Electronic Health Records (EHR), and genetic data (e.g., Polygenic Hazard Score, PHS \cite{desikan_genetic_2017}) improves classification performance.
+
+In addition to classification, tracking the progression of AD over time is crucial for understanding disease development and improving patient management. AI models can potentially predict the conversion from MCI to AD, enabling early intervention and personalized treatment strategies. Researchers have proposed various methods for integrating multimodal data, including multi-kernel learning, custom deep neural networks, low-rank dimensionality reduction, and feature fusion techniques. These methods aim to combine structural and functional information from different imaging modalities to improve diagnostic accuracy.
+
+\subsection{Alzheimer's Disease Classification}
+There is a growing interest in using machine learning and deep learning approaches for early detection of Alzheimer's Disease (AD, \cite{lin_convolutional_2018}, \cite{grueso_machine_2021}, \cite{borchert_artificial_2021}). The early stage of AD is called Mild Cognitive Impairment (MCI). A review paper by Grueso and Viejo-Sobera found the best performing machine learning method to classify MCI vs. Normal to be a support vector machine (SVM), with a mean accuracy of 75.4\%, and the best performing deep learning model to be a convolutional neural network (CNN), with a mean accuracy of 78.5\% \cite{grueso_machine_2021}. They found that most studies combined MRI and PET images to increase their classification accuracies compared to just using one modality \cite{grueso_machine_2021}\cite{borchert_artificial_2021}.
+
+Researchers have proposed different ways of integrating information and features from MRI and PET. Initially, researchers worked on multi-kernel learning \cite{hinrichs_predictive_2011}, kernel combinations \cite{zhang_multi-modal_2012}, and the Gaussian Process with mixed kernel \cite{young_accurate_2013}. More recently, researchers have developed custom deep neural networks \cite{lu_multimodal_2018}, low-rank dimensionality reduction and orthogonal rotation in a sparse linear regression framework \cite{zhu_low-rank_2019}, kernel-based approaches \cite{gupta_prediction_2019}, latent representational learning \cite{zhou_latent_2019}, a hypergraph-based multi-task feature selection \cite{shao_hypergraph_2020},\cite{zu_label-aligned_2016} a novel sparse regression to fuse imaging data with auxiliary data \cite{shen_heterogeneous_2021}, image fusion \cite{song_effective_2021}, and feature and intermediate-level fusion methods \cite{singh_multi-modal_2023}.
+
+Song et al. \cite{song_effective_2021} proposed a novel image fusion approach to integrate information from MRI and PET scans for improved AD diagnosis. They performed skull-stripping on structural MRI scans to remove non-brain tissue and reduce noise, registered the MRI to a standard brain atlas template, segmented GM tissue from the registered MRI, co-registered the FDG-PET image to the corresponding registered MRI, and extracted the corresponding GM area from the co-registered PET image. This combined information from two images improved AD diagnosis.
+
+\subsection{Alzheimer's Disease Progression}
+Cheng et al. \cite{cheng_multimodal_2015} used sparse multimodal manifold-regularized transfer learning for MCI conversion prediction. Their method includes a criterion based on maximum mean discrepancy for eliminating the negative effect of the difference between AD/NC and pMCI/sMCI, and a sparse semi-supervised manifold-regularized least squares classification method. Other researchers have used autoregressive modeling of multimodal biomarkers \cite{minhas_predicting_2018}, and an Extreme Learning Machine (ELM)-based grading method where features extracted from MRI were combined with ELM gradings of MRI, PET, CSF, and genetic data and then fed into a classifier \cite{lin_predicting_2020}.
+
+Further exploring multimodality in Alzheimer's disease research, V. Adarsh et al. introduced a custom kernel to classify different stages of Alzheimer’s disease and MCI using a multimodal approach by combining imaging data with patient clinical data \cite{adarsh_multimodal_2024}. The model was evaluated on the Alzheimer’s Disease Neuroimaging Initiative (ADNI) dataset using multiple metrics, including AUC, ROC, accuracy, sensitivity, recall, and precision. The integration of LIME and CAM software improved the transparency of the model, enhancing precision, accuracy, and recall.
+
+C. Ellis Wisley et al. \cite{wisely_convolutional_2022}utilized CNN to extract features from retinal images, combining different types of retinal images in a CNN for feature extraction. The model was evaluated on an AUC curve, achieving an AUC of 0.861 on the validation set and 0.841 on the test set, demonstrating potential clinical applications for Alzheimer's disease diagnosis.
+
+\subsection{Modality Contribution}
+Based on the literature, it is unclear whether MRI or PET contributes more to classification performance. In two separate studies, one comparing PET to MRI \cite{wisely_convolutional_2022} and one comparing PET/CT to MRI \cite{zhang_petmr_2017}, it was found that separating these modalities provided equal insights into AD classification and progression. However, combining PET and MRI provided new insights as the structural and functional components of the scans were combined, offering enhanced information. 
+
+By integrating advanced AI techniques with multimodal data, this research aims to provide a comprehensive approach to AD diagnosis and progression tracking. The ultimate goal is to improve patient outcomes by enabling earlier and more accurate detection of AD and its progression. The contributions of this paper are as follows:
+\begin{itemize}
+    \item \textbf{Multimodal Integration for AD Classification:}
+    \begin{itemize}
+        \item Developed a hybrid approach combining Convolutional Neural Networks (CNN) and Vision Transformers (ViT) for feature extraction from MRI, PET, EHR, and Genetic data.
+        \item Implemented feature-level fusion techniques to classify Alzheimer's Disease (AD) status into three classes: Normal Control (NC), Mild Cognitive Impairment (MCI), and AD.
+    \end{itemize}
+    \item \textbf{Prediction of AD Progression:}
+    \begin{itemize}
+        \item Evaluated the model's ability to predict AD progression across seven time-points.
+        \item Analyzed the performance of multimodal data integration on the accuracy and sensitivity of AD progression prediction.
+    \end{itemize}
+    \item \textbf{Model Performance and Evaluation:}
+    \begin{itemize}
+        \item Achieved a validation accuracy of 77\% and a testing accuracy of 70\%, outperforming individual CNN and ViT models.
+        \item Conducted a comparative analysis of Principal Component Analysis (PCA) and Support Vector Machine (SVM) for AD progression classification, concluding that PCA does not enhance performance while SVM with 50 components yields the best results.
+    \end{itemize}
+    \item \textbf{Impact of Modality Combination:}
+    \begin{itemize}
+        \item Investigated the effects of combining different modalities on model performance, finding that while modality combination increases overall accuracy, it decreases test sensitivity.
+        \item Provided insights into how different modalities and their combinations affect the sensitivity of CNN and ViT models differently.
+    \end{itemize}
+    \item \textbf{Comprehensive AD Diagnosis and Prognosis:}
+    \begin{itemize}
+        \item Proposed a comprehensive approach integrating advanced AI techniques with multimodal data to enhance the diagnostic accuracy and prognostic capability for AD.
+        \item Aimed to improve patient care outcomes through earlier and more accurate detection and tracking of AD progression.
+    \end{itemize}
+\end{itemize}
+
+ 

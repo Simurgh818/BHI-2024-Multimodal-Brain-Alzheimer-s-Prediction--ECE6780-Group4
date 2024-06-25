@@ -60,7 +60,7 @@ The hyperparameter optimization for PCA and SVM had the best sensitivity scores 
 %    \label{fig:enter-label}
 %\end{figure*}
 
-Furthermore, comparing the training versus testing sensitivity scores for the two models feature extractions fluctuated across timepoints. Timepoint 2 and 7 the ViT model had higher test sensitivity, while timepoint 1 had higher test sensitivity for the CNN model. Timepoint 3, 4, 5 and 6 both models performed poorly. Next, we removed the PCA dimensionality reduction and just used SVM with 50 components. Here not only timepoint 2 and 7 but also 1 had higher test sensitivity for ViT model. The performance for timepoints 3, 4, 5 and 6 for both models improved for both models, where timepoint 6 CNN performed better than ViT model.  
+Furthermore, comparing the training versus testing sensitivity scores for the three models (CNN, ViT, ResNet18-ViT) feature extractions fluctuated across timepoints. Timepoint 1, 2 and 7 the ViT model had higher test sensitivity. Timepoint 3, 4, 5 and 6 both models performed poorly with test sensitivity $ \leq 50 \%$. Next, we removed the PCA dimensionality reduction and just used SVM with 50 components. Here not only timepoint 2 and 7 but also 1 had higher test sensitivity for ViT model. The performance for timepoints 3, 4, 5 and 6 for both models improved for both models, where timepoint 6 CNN performed better than ViT model.  The hybrd ResNet18-ViT performed worse than CNN and ViT with test sensitivity $\leq 22 \% $ and training sensitivity \textgreater $50 \% $ for timepoint 4,5, and 7 ($57, 77, 63 \%$).  
 
 %\begin{figure*}
 %    \centering
@@ -68,6 +68,13 @@ Furthermore, comparing the training versus testing sensitivity scores for the tw
 %    \caption{The AD Progression Predictivity Plots for feature extraction with CNN vs. ViT. The top row shows the training vs. testing sensitivity scores for the 7 timepoints. The bottom row is without PCA and SVM with 50 components.  }
 %    \label{fig:enter-label}
 %\end{figure*}
+
+\subsection{Each Modality’s Contribution}
+\textbf{AD Classification}
+To investigate the impact of different modalities on the performance of AD classification, we conduct experiments using single modalities and their combinations in the proposed hybrid ViT-CNN model and keep the same experimental setting for each experiment. The testing results provide valuable insights into the role of each modality in AD diagnosis. 
+
+As shown in Table 1, the testing results revealed distinct performance metrics for each modality and their combinations, When MRI and PET features are combined in the CNN and ViT components, they substantially enhance classification performance. For example, the PET outperforms MRI with an accuracy of 59\% compared to MRI’s 54\%. PET also exhibits higher F1 scores and sensitivity. Furthermore, when combining all the modalities the accuracy for the combined MRI and PET model is 63\%, which is superior to the results of the single modalities. The combined approach also shows improvements in F1 scores and sensitivity. 
+
 
 \begin{table}[ht]
 % \centering
@@ -92,11 +99,6 @@ MRI \& PET \& EHR \& Gen. & MRI+PET & \textbf{0.6031} & \textbf{0.5774} & \textb
 \end{tabular}
 }
 \end{table}
-\subsection{Each Modality’s Contribution}
-\textbf{AD Classification}
-To investigate the impact of different modalities on the performance of AD classification, we conduct experiments using single modalities and their combinations in the proposed hybrid ViT-CNN model and keep the same experimental setting for each experiment. The testing results provide valuable insights into the role of each modality in AD diagnosis. 
-
-As shown in Table 1, the testing results revealed distinct performance metrics for each modality and their combinations, When MRI and PET features are combined in the CNN and ViT components, they substantially enhance classification performance. For example, the PET outperforms MRI with an accuracy of 59\% compared to MRI’s 54\%. PET also exhibits higher F1 scores and sensitivity. Furthermore, when combining all the modalities the accuracy for the combined MRI and PET model is 63\%, which is superior to the results of the single modalities. The combined approach also shows improvements in F1 scores and sensitivity. 
 
 For the feature contribution results, after ranking the highest 20 features from all of them, we can get the PET features (pet-cnn-1310594, pet-cnn-326784, and pet-cnn-1034881) in the CNN component demonstrated the top three importance shown in the right plot from Figure 3. Notably, there is a PET feature from pretrained ViT model also has a high feature importance. CNN’s PET features account for the largest proportion among these 20 features. From overall, by selecting the top 768 features from MRI-CNN and PET-CNN which match the quantity of the MRI and PET in ViT model. We can observe that the contribution of the first 768 features of PET-CNN is nearly 50\% higher than that of the first 768 features of MRI-CNN. In addition, the PET-ViT feature also plays a certain role, followed by the MRI-ViT feature. However, EHR features showed the least contribution, which could be attributed to the limited feature types. 
 

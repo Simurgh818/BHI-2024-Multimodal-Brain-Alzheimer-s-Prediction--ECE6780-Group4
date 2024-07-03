@@ -6,15 +6,15 @@ The datasets used in the preparation of this article were obtained from the Alzh
 The dataset used for AD Progression was obtained by searching criteria ADNI, Subjects: MCI, AD and CN, modalities: subjects with PET or MRI. Then we filtered for subjects with both MRI and PET images such that the images have been through their preprocessing steps. For PET the preprocessing steps are co-registration, averaging, standardization of voxel sizes and uniforming the resolution.  The MRI preprocessing steps are intensity normalization and scaling. This dataset has 3177 images. Then the subjects’ images were divided into 7 timepoints based on their visit label and if from one timepoint to the next their diagnosis label didn’t change, a new label of stable MCI (sMCI) were created for them, otherwise if their diagnosis had changed, they got the new label of progressive MCI (pMCI). There are 521 sMCI and 466 pMCI
 
 \subsection{AD Classification}
-\begin{figure*}
+\begin{figure}
     \centering
-    \includegraphics[width=0.75\linewidth]{figs/arch-classification_new.pdf}
+    \includegraphics[width=1\linewidth]{figs/arch-classification_new.pdf}
     % \vspace{-2mm}
     
     \caption{Proposed architecture for multimodal AD classification}
     \vspace{-2mm}
     \label{fig:enter-label}
-\end{figure*}
+\end{figure}
 In this study, we propose a novel classification method for AD that utilizes CNN and vision transformer (ViT\cite{dosovitskiy_image_2021}) to extract features of each modality and combine them for AD classification. The method combines two imaging modalities: MRI and PET. The architecture of our model is shown in Figure 1. For each modality (MRI and PET), the feature extraction with CNN is a custom architecture consisting of two convolution layers with ReLU and pooling. Then, we use the pre-trained ViT model to capture global and long-range dependencies. The preprocessing includes reshaping the 3D image data and select the first channel to adapt to the ViT input format, and then extract the features. 
 
 Next, we did feature fusion using concatenation and multiplicative methods. The concatenation method combines the MRI and PET features from CNN and ViT together to form a combined feature representation. This combined feature then passes through two fully connected layers, and finally outputs the AD classification result (AD, MCI or NC). During the training process, the entire model is optimized in an end-to-end manner. 
@@ -43,9 +43,9 @@ For in-depth learning the importance of different modality, we conduct feature p
 
 \textbf{AD Progression}
 One important question in Multimodal AD classification and prediction is how much each modality is contributing to the classifications. This was tested for the AD Progression by just doing the classification based on features extracted from CNN vs. ViT from MRI, PET, MRI \& PET, EHR \& Genetic, and MRI \& PET \& EHR \& Genetic.
-\begin{figure*}
+\begin{figure}
     \centering
-    \includegraphics[width=0.8\linewidth]{figs/Picture14.png}
+    \includegraphics[width=1\linewidth]{figs/Picture14.png}
     \caption{Proposed architecture for multimodal AD Progression }
     \label{fig:enter-label}
-\end{figure*}
+\end{figure}

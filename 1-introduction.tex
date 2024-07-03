@@ -1,6 +1,6 @@
 \section{Introduction}
 \label{sec:introduction}
-\IEEEPARstart{T}{here} are 55 million people worldwide living with dementia, with 10 million new cases every year \cite{who_dementia_nodate}. Alzheimer's Disease (AD) is the most common type of dementia, accounting for 60-70\% of cases. With the growing number of cases, there is a growing interest in using AI models to classify AD cases and predict the progression of AD longitudinally with varying levels of success. Different types of AI have been analyzed in various ways to determine if there is a superior methodology for multimodal AD classification.
+\IEEEPARstart{T}{here} are 55 million people worldwide living with dementia, with 10 million new cases every year \cite{who_dementia_nodate}. Alzheimer's Disease (AD) is the most common type of dementia, accounting for 60-70\% of cases \cite{who_dementia_nodate}. With the growing number of cases, there is a growing interest in using AI models to classify AD cases and predict the progression of AD longitudinally with varying levels of success. Different types of AI have been analyzed in various ways to determine if there is a superior methodology for multimodal AD classification.
 
 % AI models have shown promise in the early detection of AD, particularly in distinguishing between Mild Cognitive Impairment (MCI) and Normal Control (NC), as well as between MCI and AD. Machine learning and deep learning approaches, such as support vector machines (SVM) and convolutional neural networks (CNN), have been employed with notable success. Combining multiple modalities, such as Magnetic Resonance Imaging (MRI) and Positron Emission Tomography (PET), has been shown to enhance classification accuracy compared to using a single modality.
 
@@ -27,21 +27,14 @@ Based on the literature, it is unclear whether MRI or PET contributes more to cl
 By integrating advanced AI techniques with multimodal data, this research aims to provide a comprehensive approach to AD diagnosis and progression tracking. The ultimate goal is to improve patient outcomes by enabling earlier and more accurate detection of AD and its progression. The contributions of this paper are as follows:
 \begin{itemize}
     \item \textbf{Multimodal Integration for AD Classification:}
-    \begin{itemize}
-        \item Developed a hybrid approach combining Convolutional Neural Networks (CNN) and Vision Transformers (ViT) for feature extraction from MRI, PET, EHR, and Genetic data.
-        \item Implemented feature-level fusion techniques to classify Alzheimer's Disease (AD) status into three classes: Normal Control (NC), Mild Cognitive Impairment (MCI), and AD.
-    \end{itemize}
+    We developed a hybrid approach combining Convolutional Neural Networks (CNN) and Vision Transformers (ViT) for feature extraction from MRI, PET, EHR, and Genetic data. In addition, we implemented feature-level fusion techniques to classify Alzheimer's Disease (AD) status into three classes: Normal Control (NC), Mild Cognitive Impairment (MCI), and AD.
+    
     \item \textbf{Prediction of AD Progression:}
-    \begin{itemize}
-        \item Evaluated the model's ability to predict AD progression across seven time-points.
-        \item Analyzed the performance of multimodal data integration on the accuracy and sensitivity of AD progression prediction.
-    \end{itemize}
+    We evaluated CNN, ViT, CNN-ViT's ability to predict AD progression across seven time-points. Furthermore, we analyzed the performance of multimodal data integration on the accuracy and sensitivity of AD progression prediction.
     
     \item \textbf{Impact of Modality Combination:}
-    \begin{itemize}
-        \item Investigated the effects of combining different modalities on model performance, finding that while modality combination increases overall accuracy, it decreases test sensitivity.
-        \item Provided insights into how different modalities and their combinations affect the sensitivity of CNN and ViT models differently.
-    \end{itemize}
+    We investigated the effects of combining different modalities on model performance, finding that while modality combination increases overall accuracy, it decreases test sensitivity. In addition, we provided insights into how different modalities and their combinations affect the sensitivity of CNN and ViT models differently.
+
  
 \end{itemize}\ 
 

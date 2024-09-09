@@ -1,6 +1,6 @@
-\section{Discussion}
+\section{Discussion: Implications of Multimodal Approaches for Early Alzheimer’s Prediction.}
 \label{sec:discussion}
-\subsection{AD Classification}
+\subsection{Multimodal Alzheimer's Disease Classification}
 A key innovation of our approach is to exploit complementary information from CNN and ViT. CNN is good at capturing local features, while ViT is good at modeling global dependencies. By combining these two types of features, our model can represent brain imaging data more comprehensively, thereby improving the performance of AD classification. Furthermore, by leveraging pre-trained ViT models, our approach can effectively leverage universal visual representations learned on large-scale datasets. 
 
 We found that the hybrid ViT-CNN model showed better consistency, and its validation results were closer to the test results (validation accuracy 77\%, test accuracy 70\%). In contrast, the performance of the CNN encoder model on the validation set and test set differs greatly. This shows that the hybrid ViT-CNN model has stable generalization ability. 
@@ -9,12 +9,12 @@ It is worth noting that the ViT model alone has the lowest performance. We belie
 
 By incorporating a pretrained ViT alongside the CNN encoder, the hybrid model achieves a remarkable increase in sensitivity from approximately 52\% to around 80\%, while maintaining consistent hyperparameters. This superior performance can be attributed to the pretrained ViT's ability to facilitate effective multi-modality integration and the concatenation of diverse features extracted from both the CNN and ViT. The promising results suggest that the hybrid ViT-CNN model has the potential to become a state-of-the-art approach for AD classification. Visualization techniques such as t-SNE and Grad-Cam will further elucidate the important regions learned by the model, contributing to the development of more accurate and reliable AD diagnosis techniques. 
 
-\subsection{AD Progression}
+\subsection{Multimodal Alzheimer's Disease Progression}
 The hyperparameter optimization results suggest that dimensionality reduction using PCA does not help the classification performance. The SVM with 50 components outperforms 1 and 10 components. In addition, although for 3 out of 7 timepoints ViT had higher Test Sensitivity scores than CNN, for timepoints 3-5 they were similar and for timepoint 6 CNN had higher Test Sensitivity scores. Overall, the test sensitivity scores were lower than expected. This could be since these models were pretrained on non-medical images. It is essential to do transfer learning and train them on medical images before doing feature extraction. 
 
 The hybrid model, ResNet18-ViT, did go through transfer learning. One model got trained on MRI images from all time points for MRI feature extraction and a separate model got transfer learning training on PET images from all time points for PET feature extraction. Even though, theoretically the hybrid model should outperform the CNN and ViT models, but the test sensitivity scores were below 22 \% for the seven timepoints and training sensitivity got obove 50 \% for three out of seven timepoints. Therefore, for this dataset the ViT model outperformed the CNN and the hybrid model performed worse on the sensitivity scores. 
 
-\subsection{Modality Contributions} 
+\subsection{Analysis of Multimodal Contributions to AD Classification and Progression Prediction.} 
 
 \textbf{AD Classification: }
 

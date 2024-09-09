@@ -1,6 +1,6 @@
-\section{Results}
+\section{Results: Predictive Accuracy and Model Performance.}
 \label{sec:results}
-\subsection{AD Classification}
+\subsection{Multimodal Alzheimer's Disease Classification}
 In this section, we use 5-fold cross-validation to evaluate the performance of the proposed model. Specifically, we randomly divided the data set into 5 subsets, selected 4 subsets as the training set each time, and the remaining 1 subset as the validation set. This process is repeated 5 times to ensure that each subset has a chance to serve as a validation set. We use the Adam optimizer, set the learning rate to 0.0001, and set the number of training epochs to 5. We adopt the cross-entropy loss function as the optimization objective. It is worth noting that our model is trained in multi-modal data, taking full advantage of the complementary information of MRI and PET images. 
 %\begin{figure}
 %    \centering
@@ -45,7 +45,7 @@ Comparison results for CNN-based model and hybrid ViT-CNN model revealed signifi
 %\end{figure*}
 
 
-\subsection{AD Progression}
+\subsection{Multimodal Alzheimer's Disease Progression}
 The hyperparameter optimization for PCA and SVM had the best sensitivity scores for the 7 timepoints for 50 components for SVM. The PCA number of components (2, 10 or 25) had similar scores. 
 
 %\begin{figure*}

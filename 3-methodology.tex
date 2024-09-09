@@ -1,20 +1,16 @@
-\section{Methodology}
+\section{Methodology: Multimodal Data Integration for Predictive Modeling}
 \label{sec:method}
-\subsection{ADNI Dataset}
-The datasets used in the preparation of this article were obtained from the Alzheimer’s Disease Neuroimaging Initiative (ADNI) database \cite{lu_multimodal_2018}. The ADNI was launched in 2003 as a public-private partnership, led by Principal Investigator Michael W. Weiner, MD. The primary goal of ADNI has been to test whether serial magnetic resonance imaging (MRI), positron emission tomography (PET), other biological markers, and clinical and neuropsychological assessment can be combined to measure the progression of mild cognitive impairment (MCI) and early Alzheimer’s disease (AD). De-identified patient data was obtained and were placed into a server where the images could be accessed for pre-processing and use in the pipeline. The dataset used for AD Classification was obtained by the search criteria ADNI phase 1, Subjects: MCI, AD and CN, subjects with both PET and MRI (Axial) and chosen original images. In total there are 1006 images (450 MCI, 244 CN, and 312 AD) for 233 patients. In addition, we found that the MRI images from this dataset were masks and used a previously downloaded MRI with PET images from this dataset.   This hybrid dataset has 2102 images (1166 MCI, 515 CN, and 421 AD) for 290 patients.  
 
-The dataset used for AD Progression was obtained by searching criteria ADNI, Subjects: MCI, AD and CN, modalities: subjects with PET or MRI. Then we filtered for subjects with both MRI and PET images such that the images have been through their preprocessing steps. For PET the preprocessing steps are co-registration, averaging, standardization of voxel sizes and uniforming the resolution.  The MRI preprocessing steps are intensity normalization and scaling. This dataset has 3177 images. Then the subjects’ images were divided into 7 timepoints based on their visit label and if from one timepoint to the next their diagnosis label didn’t change, a new label of stable MCI (sMCI) were created for them, otherwise if their diagnosis had changed, they got the new label of progressive MCI (pMCI). There are 521 sMCI and 466 pMCI
-
-\subsection{AD Classification}
+\subsection{Deep Learning for AD Classification and Progression Analysis}
 \begin{figure}
     \centering
     \includegraphics[width=1\linewidth]{figs/arch-classification_new.pdf}
     % \vspace{-2mm}
-    
     \caption{Proposed architecture for multimodal AD classification}
     \vspace{-2mm}
     \label{fig:enter-label}
 \end{figure}
+
 In this study, we propose a novel classification method for AD that utilizes CNN and vision transformer (ViT\cite{dosovitskiy_image_2021}) to extract features of each modality and combine them for AD classification. The method combines two imaging modalities: MRI and PET. The architecture of our model is shown in Figure 1. For each modality (MRI and PET), the feature extraction with CNN is a custom architecture consisting of two convolution layers with ReLU and pooling. Then, we use the pre-trained ViT model to capture global and long-range dependencies. The preprocessing includes reshaping the 3D image data and select the first channel to adapt to the ViT input format, and then extract the features. 
 
 Next, we did feature fusion using concatenation and multiplicative methods. The concatenation method combines the MRI and PET features from CNN and ViT together to form a combined feature representation. This combined feature then passes through two fully connected layers, and finally outputs the AD classification result (AD, MCI or NC). During the training process, the entire model is optimized in an end-to-end manner. 
@@ -35,7 +31,7 @@ Similarly, a separate BrainModel was employed for the PET images. This PET-speci
 
 The training process utilized a 10-fold cross-validation scheme to ensure robustness and generalization. This was achieved using the KFold class from scikit-learn, configured with 10 splits, shuffled data, and a fixed random state for reproducibility. The key hyperparameters for training included a learning rate of 0.001, a batch size of 4, and a total of 25 epochs. Additionally, a weight decay of 1e-4 was applied to regularize the model and prevent overfitting. This systematic approach ensured that the hybrid model was finely tuned and capable of effectively integrating the distinct features from MRI and PET images.
 
-\subsection{Modality Contributions}
+\subsection{Multimodal Data Integration for Predictive Modeling}
 \textbf{AD Classification}
 In this study, we explore the impact of various modalities on AD classification by employing different single and combined modalities. We utilized PET, MRI, EHR, and genomic data. Our methodology involves setting up distinct experimental conditions for each modality and combinations thereof, particularly focusing on MRI and PET due to their prevalent use in medical imaging. The multimodal model, combining MRI and PET, is further examined under various hyperparameter settings to gauge stability and effectiveness in AD classification. 
 
@@ -49,3 +45,8 @@ One important question in Multimodal AD classification and prediction is how muc
     \caption{Proposed architecture for multimodal AD Progression }
     \label{fig:enter-label}
 \end{figure}
+
+\subsection{The Alzheimer’s Disease Neuroimaging Initiative (ADNI) Dataset}
+The datasets used in the preparation of this article were obtained from the Alzheimer’s Disease Neuroimaging Initiative (ADNI) database \cite{lu_multimodal_2018}. The ADNI was launched in 2003 as a public-private partnership, led by Principal Investigator Michael W. Weiner, MD. The primary goal of ADNI has been to test whether serial magnetic resonance imaging (MRI), positron emission tomography (PET), other biological markers, and clinical and neuropsychological assessment can be combined to measure the progression of mild cognitive impairment (MCI) and early Alzheimer’s disease (AD). De-identified patient data was obtained and were placed into a server where the images could be accessed for pre-processing and use in the pipeline. The dataset used for AD Classification was obtained by the search criteria ADNI phase 1, Subjects: MCI, AD and CN, subjects with both PET and MRI (Axial) and chosen original images. In total there are 1006 images (450 MCI, 244 CN, and 312 AD) for 233 patients. In addition, we found that the MRI images from this dataset were masks and used a previously downloaded MRI with PET images from this dataset.   This hybrid dataset has 2102 images (1166 MCI, 515 CN, and 421 AD) for 290 patients.  
+
+The dataset used for AD Progression was obtained by searching criteria ADNI, Subjects: MCI, AD and CN, modalities: subjects with PET or MRI. Then we filtered for subjects with both MRI and PET images such that the images have been through their preprocessing steps. For PET the preprocessing steps are co-registration, averaging, standardization of voxel sizes and uniforming the resolution.  The MRI preprocessing steps are intensity normalization and scaling. This dataset has 3177 images. Then the subjects’ images were divided into 7 timepoints based on their visit label and if from one timepoint to the next their diagnosis label didn’t change, a new label of stable MCI (sMCI) were created for them, otherwise if their diagnosis had changed, they got the new label of progressive MCI (pMCI). There are 521 sMCI and 466 pMCI

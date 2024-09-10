@@ -1,7 +1,7 @@
 \section{Results: Predictive Accuracy and Model Performance.}
 \label{sec:results}
 \subsection{Multimodal Alzheimer's Disease Classification}
-In this section, we use 5-fold cross-validation to evaluate the performance of the proposed model. Specifically, we randomly divided the data set into 5 subsets, selected 4 subsets as the training set each time, and the remaining 1 subset as the validation set. This process is repeated 5 times to ensure that each subset has a chance to serve as a validation set. We use the Adam optimizer, set the learning rate to 0.0001, and set the number of training epochs to 5. We adopt the cross-entropy loss function as the optimization objective. It is worth noting that our model is trained in multi-modal data, taking full advantage of the complementary information of MRI and PET images. 
+
 %\begin{figure}
 %    \centering
 %    \includegraphics[width=1\linewidth]{figs/Picture13.png}
@@ -70,10 +70,7 @@ Furthermore, comparing the training versus testing sensitivity scores for the th
 %\end{figure*}
 
 \subsection{Each Modality’s Contribution}
-\textbf{AD Classification}
-To investigate the impact of different modalities on the performance of AD classification, we conduct experiments using single modalities and their combinations in the proposed hybrid ViT-CNN model and keep the same experimental setting for each experiment. The testing results provide valuable insights into the role of each modality in AD diagnosis. 
-
-As shown in Table 1, the testing results revealed distinct performance metrics for each modality and their combinations, When MRI and PET features are combined in the CNN and ViT components, they substantially enhance classification performance. For example, the PET outperforms MRI with an accuracy of 59\% compared to MRI’s 54\%. PET also exhibits higher F1 scores and sensitivity. Furthermore, when combining all the modalities the accuracy for the combined MRI and PET model is 63\%, which is superior to the results of the single modalities. The combined approach also shows improvements in F1 scores and sensitivity. 
+\textbf{AD Classification: } To investigate the impact of different modalities on the performance of AD classification, we conduct experiments using single modalities and their combinations in the proposed hybrid ViT-CNN model and keep the same experimental setting for each experiment. The testing results provide valuable insights into the role of each modality in AD diagnosis. As shown in Table 1, the testing results revealed distinct performance metrics for each modality and their combinations, When MRI and PET features are combined in the CNN and ViT components, they substantially enhance classification performance. For example, the PET outperforms MRI with an accuracy of 59\% compared to MRI’s 54\%. PET also exhibits higher F1 scores and sensitivity. Furthermore, when combining all the modalities the accuracy for the combined MRI and PET model is 63\%, which is superior to the results of the single modalities. The combined approach also shows improvements in F1 scores and sensitivity. 
 
 
 \begin{table}[ht]
@@ -99,18 +96,15 @@ MRI \& PET \& EHR \& Gen. & MRI+PET & \textbf{0.6031} & \textbf{0.5774} & \textb
 \end{tabular}
 }
 \end{table}
-
- \begin{figure*}
+\begin{figure*}
      \centering
      \includegraphics[width=1\linewidth]{figs/Picture16.png}
      \caption{Modality contribution analysis by ranking all the feature importances from CNN and ViT of MRI and PET images. }
     \label{fig:featureImportance}
- \end{figure*}
- 
+\end{figure*}
 For the feature contribution results, after ranking the highest 20 features from all of them, we can get the PET features (pet-cnn-1310594, pet-cnn-326784, and pet-cnn-1034881) in the CNN component demonstrated the top three importance shown in the right plot from \autoref{fig:featureImportance}. Notably, there is a PET feature from pretrained ViT model also has a high feature importance. CNN’s PET features account for the largest proportion among these 20 features. From overall, by selecting the top 768 features from MRI-CNN and PET-CNN which match the quantity of the MRI and PET in ViT model. We can observe that the contribution of the first 768 features of PET-CNN is nearly 50\% higher than that of the first 768 features of MRI-CNN. In addition, the PET-ViT feature also plays a certain role, followed by the MRI-ViT feature. However, EHR features showed the least contribution, which could be attributed to the limited feature types. 
  
-\textbf{AD Progression}
-To test the contribution of each modality and their combination we tested the classification based on features extracted from CNN vs. ViT from MRI, PET, MRI \& PET, EHR \& Genetic, and MRI \& PET \& EHR \& Genetic. There are oscillations across the 7 timepoints for the three metrics of accuracy, F1 and Test Sensitivity (\autoref{fig:ADprogression}).  
+\textbf{AD Progression: } To test the contribution of each modality and their combination we tested the classification based on features extracted from CNN vs. ViT from MRI, PET, MRI \& PET, EHR \& Genetic, and MRI \& PET \& EHR \& Genetic. There are oscillations across the 7 timepoints for the three metrics of accuracy, F1 and Test Sensitivity (\autoref{fig:ADprogression}).  
 
 % \begin{table}[ht]
 % \centering
@@ -156,14 +150,12 @@ The MRI accuracy for CNN is between 50 to 55\%, while for ViT it is between 45 t
 The F1 scores for MRI data with CNN range from 20\% to 59\%, while with ViT, they range from 26\% to 70\% and for the hybrid ResNet18-ViT it is between 33 to 68 \%. For PET data, the F1 scores with CNN range from 32\% to 68\%, whereas with ViT, they range from 21\% to 65\% and for the hybrid ResNet18-ViT it is between 24 to 56. Combining MRI and PET data, the F1 scores with CNN range from 23\% to 65\%, whereas with ViT, they range from 22\% to 60\% and for the hybrid ResNet18-ViT it is between 25 to 66 \%. For EHR and Genetic data, the F1 scores with CNN range from 0\% to 59\%  and for the hybrid ResNet18-ViT it is between 0 to 59\%. Finally, combining all modalities, the F1 scores with CNN range from 52\% to 65\%, whereas with ViT, they range from 23\% to 60\% and for the hybrid ResNet18-ViT it is between 31 to 58 \%. 
 
 Similarly, the Test Sensitivity scores for MRI data with CNN range from 20\% to 79\%, while with ViT, they range from 25\% to 93\% and for the hybrid ResNet18-ViT it is between 34-80\%. For PET data, the Test Sensitivity scores with CNN range from 33\% to 68\%, whereas with ViT, they range from 20\% to 85\% and for the hybrid ResNet18-ViT it is between 25 to 79 \%. Combining MRI and PET data, the Test Sensitivity scores with CNN range from 21\% to 76\%, whereas with ViT, they range from 19\% to 80\% and for the hybrid ResNet18-ViT it is between 26 to 87 \% . For EHR and Genetic data, the Test Sensitivity scores with CNN range from 0\% to 72\%, like ViT and the hybrid model. Finally, combining all modalities, the Test Sensitivity scores with CNN range from 63\% to 74\%, whereas with ViT, they range from 21\% to 81\% and for the hybrid ResNet18-ViT it is between 23 and 73 \%. 
-
 \begin{figure*}
     \centering
     \includegraphics[width=1\linewidth]{figs/Picture17_1.png}
     \caption{The plot of accuracy, F1 score and Test Sensitivity for CNN and ViT feature extractions for each modality and their combinations }
     \label{fig:ADprogression}
 \end{figure*}
-
 The contribution of modalities and their performance metrics of accuracy, F1 score, and Test Sensitivity oscillated across timepoints and the range of values for CNN, ViT and ResNet18-ViT were similar. For example, for accuracy combining MRI and PET did not change the timepoints range much:  45-58\% for CNN, 44-59\% for ViT and 41-56 \% for ResNet18-ViT model. Furthermore, for EHR and Genetic they had a large range of 37-63\% for both CNN and ViT and combining them with MRI and PET did increase the upper range of CNN to 62\% and 60 \% for ResNet18-ViT model. One reason that EHR and Genetic’s did not have a big effect could be that they were 3 features, while for MRI and PET combination we had 2000 features for CNN or ViT. Therefore, for accuracy CNN and ViT were similar and lower for the hybrid model.  
 
 The F1 scores had a larger range for the timepoints. MRI had a higher upper range with ViT at 70\%, while for CNN it was at 59\% and 68 \% for ResNet18-ViT model. On the other hand, PET had a higher upper range with CNN at 68\%, while for ViT it was at 65\% and lower at 56 \% for ResNet18-ViT model. Combining PET and MRI, CNN had a higher upper range at 65\%, while for ViT it was at 60\% and 66 \% for ResNet18-ViT model. The EHR and Genetic performed the worst for timepoint 3-6 with 0\% for both CNN and ViT models and $\leq3$ for ResNet18-ViT model.  Combining all modalities, CNN had a higher upper range at 65\%, while it was at 60\% for ViT and 58 \% for ResNet18-ViT model. Therefore, for F1 scores CNN had higher upper range values than ViT. 
